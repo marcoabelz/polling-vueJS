@@ -28,6 +28,11 @@ export default {
 };
 </script>
 <style type="text/css">
+
+	.give-your-vote{
+		font-size: 20px;
+	}
+
 	.emoticons {
 	    justify-content: center;
 	    display: flex;
@@ -38,8 +43,13 @@ export default {
 		flex-wrap: wrap;
 		align-items: center;
 	}
-	
+
 	section{
 		width: 100%;
+	}
+
+	.finish{
+		position: absolute;
+		bottom: 20px;
 	}
 </style>

@@ -5,6 +5,8 @@
     <button v-for="(emoticon, index) in emoticons" 
             :key="index"
             :id="emoticon"
+            :value="emoticon"
+            @click="vote"
             class="btn-emoticon"
     ></button>
 
@@ -22,10 +24,17 @@ export default {
     return {
       emoticons: ['very-bad','bad','ok','good','very-good'] //membuat array emoticons
     }
+  },
+  methods:{
+    vote(e){
+      var voted = e.target.value;
+      
+      localStorage.setItem('vote', voted);
+   }
   }
 };
-
 </script>
+
 <style type="text/css">
   .emoticons {
     justify-content: center;
