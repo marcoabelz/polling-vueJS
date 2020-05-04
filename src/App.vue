@@ -10,7 +10,7 @@
 
 <style>
 body{
-  background: lightgreen;
+  background: #03cffc;
   color: navy;
   overflow: hidden;
 }
