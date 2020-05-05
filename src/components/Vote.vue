@@ -1,12 +1,14 @@
 <template>
   <div class="buttons">
     <!-- v-for untuk melakukan looping di dalam vue, emoticon, index akan mendapatkan nilai dari arrary emoticons. key mendapatkan nilai dari index,
-    id akan mendapatkan nilai perulangan dari emoticon || value agar semua emoticon memiliki valuenya masing2 || vote adalah nama method (29) -->
+    id akan mendapatkan nilai perulangan dari emoticon || value agar semua emoticon memiliki valuenya masing2 || vote adalah nama method (29) || line 10 berhubungan
+    dengan line 29 dan 34-->
     <button v-for="(emoticon, index) in emoticons" 
             :key="index"
             :id="emoticon"
             :value="emoticon" 
             @click="vote"
+            :disabled="isDisable" 
             class="btn-emoticon"
     ></button>
 
@@ -19,15 +21,17 @@
 import moment from "moment";
 
 export default {
-  name: "Home",
+  name: "Vote",
   components: {},
   data: function(){
     return {
-      emoticons: ['very-bad','bad','ok','good','very-good'] //membuat array emoticons
+      emoticons: ['very-bad','bad','ok','good','very-good'], //membuat array emoticons
+      isDisable: false //line 11 dan 34 || ketika isDisable bernilai false, maka button emot bisa di klik 
     }
   },
   methods:{
     vote(e){ //e adalah event || console.log(e); -> hapus baris 30 32 ganti baris 31 , -> inspect -> console -> target -> value
+      this.isDisable=true; //ketika isDisable bernilai true, maka button emot tidak bisa di klik lagi
       var voted = e.target.value;
       //console.log(voted);
       var keyStorage = moment().format('YYYYMMDDhhmmss'); //digunakan sebagai key dinamis untuk menyimpan data dengan value yg berbeda (gantinya id)
