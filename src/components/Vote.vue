@@ -1,11 +1,11 @@
 <template>
   <div class="buttons">
     <!-- v-for untuk melakukan looping di dalam vue, emoticon, index akan mendapatkan nilai dari arrary emoticons. key mendapatkan nilai dari index,
-    id akan mendapatkan nilai perulangan dari emoticon -->
+    id akan mendapatkan nilai perulangan dari emoticon || value agar semua emoticon memiliki valuenya masing2 || vote adalah nama method (29) -->
     <button v-for="(emoticon, index) in emoticons" 
             :key="index"
             :id="emoticon"
-            :value="emoticon"
+            :value="emoticon" 
             @click="vote"
             class="btn-emoticon"
     ></button>
@@ -16,6 +16,7 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
+import moment from "moment";
 
 export default {
   name: "Home",
@@ -26,10 +27,13 @@ export default {
     }
   },
   methods:{
-    vote(e){
+    vote(e){ //e adalah event || console.log(e); -> hapus baris 30 32 ganti baris 31 , -> inspect -> console -> target -> value
       var voted = e.target.value;
+      //console.log(voted);
+      var waktu = moment().format('YYYY-MM-DD, hh:mm:ss');
       
-      localStorage.setItem('vote', voted);
+      console.log(waktu);
+      localStorage.setItem('vote', voted); //menyimpan nilai voted ke dalam nilai kunci vote di dalam local storage (inpect -> application -> localstorage)
    }
   }
 };
