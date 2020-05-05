@@ -2,12 +2,15 @@
   <div class="buttons">
     <!-- v-for untuk melakukan looping di dalam vue, emoticon, index akan mendapatkan nilai dari arrary emoticons. key mendapatkan nilai dari index,
     id akan mendapatkan nilai perulangan dari emoticon || value agar semua emoticon memiliki valuenya masing2 || vote adalah nama method (29) || line 10 berhubungan
-    dengan line 29 dan 34-->
+    dengan line 29 dan 34 || :class = jika nilai emoticon hasil looping memiliki nilai yang sama dengan emoticon yg sedang di klik, maka emoticon tsb
+    akan di tambahkan kelas active
+     line 31-->
     <button v-for="(emoticon, index) in emoticons" 
             :key="index"
             :id="emoticon"
             :value="emoticon" 
             @click="vote"
+            :class="{active: emoticon == emoticonClick}"
             :disabled="isDisable" 
             class="btn-emoticon"
     ></button>
@@ -26,13 +29,15 @@ export default {
   data: function(){
     return {
       emoticons: ['very-bad','bad','ok','good','very-good'], //membuat array emoticons
-      isDisable: false //line 11 dan 34 || ketika isDisable bernilai false, maka button emot bisa di klik 
+      isDisable: false, //line 11 dan 34 || ketika isDisable bernilai false, maka button emot bisa di klik 
+      emoticonClick: false //jika nilai true maka kelas active akan ditambahkan pada button, kalo false nilainya akan dihapus
     }
   },
   methods:{
     vote(e){ //e adalah event || console.log(e); -> hapus baris 30 32 ganti baris 31 , -> inspect -> console -> target -> value
-      this.isDisable=true; //ketika isDisable bernilai true, maka button emot tidak bisa di klik lagi
       var voted = e.target.value;
+      this.isDisable=true; //ketika isDisable bernilai true, maka button emot tidak bisa di klik lagi
+      this.emoticonClick= voted; //emoticonClick akan diisi berdasarkan value iconnya
       //console.log(voted);
       var keyStorage = moment().format('YYYYMMDDhhmmss'); //digunakan sebagai key dinamis untuk menyimpan data dengan value yg berbeda (gantinya id)
       var created_at = moment().format('YYYY-MM-DD, hh:mm:ss');
@@ -75,6 +80,7 @@ export default {
     align-items: center;
   }
 
+  
   #very-bad{
     background-position: -413.2px 0px;
   }
@@ -82,10 +88,12 @@ export default {
     background: url('../assets/emot-active-klik.png');
     background-position: -413.2px 0px;
   }
+  #very-bad.active,
   #very-bad:active{
     background: url('../assets/emot-active-klik.png');
     background-position: -413.2px 0px;
     border-style: inset;
+    
   }
 
   #bad{
@@ -95,6 +103,7 @@ export default {
     background: url('../assets/emot-active-klik.png');
     background-position: -311px 0px;
   }
+  #bad.active,
   #bad:active{
     background: url('../assets/emot-active-klik.png');
     background-position: -311px 0px;
@@ -108,6 +117,7 @@ export default {
     background: url('../assets/emot-active-klik.png');
     background-position: -208px 0px;
   }
+  #ok.active,
   #ok:active{
     background: url('../assets/emot-active-klik.png');
     background-position: -208px 0px;
@@ -121,6 +131,7 @@ export default {
     background: url('../assets/emot-active-klik.png');
     background-position: -105px 0px;
   }
+  #good.active,
   #good:active{
     background: url('../assets/emot-active-klik.png');
     background-position: -105px 0px;
@@ -133,6 +144,7 @@ export default {
     background: url('../assets/emot-active-klik.png');
     background-position: 0.2px 0px;
   }
+  #very-good.active,
   #very-good:active{
     background: url('../assets/emot-active-klik.png');
     background-position: 0.2px 0px;
