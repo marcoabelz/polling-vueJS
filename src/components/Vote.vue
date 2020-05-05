@@ -30,13 +30,24 @@ export default {
     vote(e){ //e adalah event || console.log(e); -> hapus baris 30 32 ganti baris 31 , -> inspect -> console -> target -> value
       var voted = e.target.value;
       //console.log(voted);
-      var waktu = moment().format('YYYY-MM-DD, hh:mm:ss');
+      var keyStorage = moment().format('YYYYMMDDhhmmss'); //digunakan sebagai key dinamis untuk menyimpan data dengan value yg berbeda (gantinya id)
+      var created_at = moment().format('YYYY-MM-DD, hh:mm:ss');
       
-      console.log(waktu);
-      localStorage.setItem('vote', voted); //menyimpan nilai voted ke dalam nilai kunci vote di dalam local storage (inpect -> application -> localstorage)
+      var data = {
+        vote: voted,
+        created_at: created_at
+      }
+
+      //console.log(data);
+
+      var jsonToString = JSON.stringify(data); //JSON.stringify(data) mengubah isi variabel data dari JSON menjadi string agar bisa di save di local storage
+
+      //console.log(jsonToString);
+
+      localStorage.setItem(keyStorage, jsonToString); //menyimpan nilai voted ke dalam nilai kunci vote di dalam local storage (inpect -> application -> localstorage)
+    }
    }
-  }
-};
+  };
 </script>
 
 <style type="text/css">
