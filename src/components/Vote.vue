@@ -29,15 +29,15 @@ export default {
   data: function(){
     return {
       emoticons: ['very-bad','bad','ok','good','very-good'], //membuat array emoticons
-      isDisable: false, //line 11 dan 34 || ketika isDisable bernilai false, maka button emot bisa di klik 
-      emoticonClick: false //jika nilai true maka kelas active akan ditambahkan pada button, kalo false nilainya akan dihapus
+      //isDisable: false,
+      emoticonClick: '' //jika nilai true maka kelas active akan ditambahkan pada button, kalo false nilainya akan dihapus
     }
   },
   methods:{
     vote(e){ //e adalah event || console.log(e); -> hapus baris 30 32 ganti baris 31 , -> inspect -> console -> target -> value
       var voted = e.target.value;
-      this.isDisable=true; //ketika isDisable bernilai true, maka button emot tidak bisa di klik lagi
-      this.emoticonClick= voted; //emoticonClick akan diisi berdasarkan value iconnya
+      //this.isDisable=true; //ketika isDisable bernilai true, maka button emot tidak bisa di klik lagi
+      this.emoticonClick= voted; //emoticonClick akan diisi berdasarkan value icon yg di klik
       //console.log(voted);
       var keyStorage = moment().format('YYYYMMDDhhmmss'); //digunakan sebagai key dinamis untuk menyimpan data dengan value yg berbeda (gantinya id)
       var created_at = moment().format('YYYY-MM-DD, hh:mm:ss');
@@ -54,6 +54,11 @@ export default {
       //console.log(jsonToString);
 
       localStorage.setItem(keyStorage, jsonToString); //menyimpan nilai voted ke dalam nilai kunci vote di dalam local storage (inpect -> application -> localstorage)
+    }
+   },
+   computed:{
+    isDisable : function(){
+      return this.emoticonClick.length === 0 ? false : true; //jika nilai string di dalam emoticionClick 0 maka nilainya false, jika >0 maka true
     }
    }
   };
