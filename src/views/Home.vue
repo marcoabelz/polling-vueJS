@@ -30,7 +30,7 @@ export default {
   name: "Home",
   data: function(){
   	return{
-  		show: false //data show dari line 17, false = hilang, true = ada
+  		show: false //membuat data show dari line 17, false = hilang, true = ada
   	}
   },
   components: { Vote },
@@ -42,6 +42,13 @@ export default {
 };
 </script>
 <style type="text/css">
+
+	.fade-enter-active, .fade-leave-active {
+		transition: opacity 1s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+		opacity: 0;
+	}
 
 	.give-your-vote{
 		font-size: 20px;
@@ -66,4 +73,5 @@ export default {
 		position: absolute;
 		bottom: 20px;
 	}
+
 </style>

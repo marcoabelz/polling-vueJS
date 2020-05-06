@@ -1,20 +1,36 @@
 <template>
-  <div class="buttons">
-    <!-- v-for untuk melakukan looping di dalam vue, emoticon, index akan mendapatkan nilai dari arrary emoticons. key mendapatkan nilai dari index,
-    id akan mendapatkan nilai perulangan dari emoticon || value agar semua emoticon memiliki valuenya masing2 || vote adalah nama method (29) || line 10 berhubungan
-    dengan line 29 dan 34 || :class = jika nilai emoticon hasil looping memiliki nilai yang sama dengan emoticon yg sedang di klik, maka emoticon tsb
-    akan di tambahkan kelas active
-     line 31-->
-    <button v-for="(emoticon, index) in emoticons" 
-            :key="index"
-            :id="emoticon"
-            :value="emoticon" 
-            @click="vote"
-            :class="{active: emoticon == emoticonClick}"
-            :disabled="isDisable" 
-            class="btn-emoticon"
-    ></button>
-
+  <div>
+    <section class="button-emot">
+      <div class="buttons">
+        <!-- v-for untuk melakukan looping di dalam vue, emoticon, index akan mendapatkan nilai dari arrary emoticons. key mendapatkan nilai dari index,
+        id akan mendapatkan nilai perulangan dari emoticon || value agar semua emoticon memiliki valuenya masing2 || vote adalah nama method (47) || :class = jika nilai emoticon hasil looping memiliki nilai yang sama dengan emoticon yg sedang di klik, maka emoticon tsb
+        akan di tambahkan kelas active line 53-->
+        <button v-for="(emoticon, index) in emoticons" 
+                :key="index"
+                :id="emoticon"
+                :value="emoticon" 
+                @click="vote"
+                :class="{active: emoticon == emoticonClick}"
+                :disabled="isDisable" 
+                class="btn-emoticon">
+      </button>
+      </div>
+    </section>
+    <section class="penjelasan-emot">        
+      <div class="very-bad">Very Bad</div>
+      <div class="bad">Bad</div>
+      <div class="ok">Ok</div>
+      <div class="good">Good</div>
+      <div class="very-good">Very Good</div>
+    </section>
+      <!--v-for="(emoticon) in emoticons" 
+             class="penjelasan-emot">
+      <div v-if="emoticon === 'very-bad'" >Very Bad</div>
+      <div v-else-if="emoticon === 'bad'" >Bad</div>
+      <div v-else-if="emoticon === 'ok'" >Ok</div>
+      <div v-else-if="emoticon === 'good'" >Good</div>
+      <div v-if="emoticon === 'very-good'" >Very Good</div>
+    </section>-->
   </div>
 </template>
 
@@ -80,38 +96,38 @@ export default {
     display: flex;
   }
 
-  .btn-emoticon{
-    background: url('../assets/emoticon.png');
-    width: 101px;
+.btn-emoticon{
+    background: url('../assets/emot-active.png');
+    width: 88px;
     height: 100px;
     border: none;
-    margin: 0px 10px;
+    margin: 0px 15px;
     cursor: pointer;
     outline: none;
     align-items: center;
   }
 
   
-#very-bad{
-    background-position: 0px 0px;
+  #very-bad{
+    background-position: -412px 0px;
   }
   #very-bad:hover{
-    background: url('../assets/emot-active.png');
-    background-position: -400px 0px;
+    background: url('../assets/emot-active-klik.png');
+    background-position: -412px 0px;
   }
   #very-bad.active,
   #very-bad:active{
     background: url('../assets/emot-active-klik.png');
-    background-position: -400px 0px;
+    background-position: -412px 0px;
     /*border-style: inset;*/
     
   }
 
   #bad{
-    background-position: -101px 0px;
+    background-position: -311px 0px;
   }
   #bad:hover{
-    background: url('../assets/emot-active.png');
+    background: url('../assets/emot-active-klik.png');
     background-position: -311px 0px;
   }
   #bad.active,
@@ -122,10 +138,10 @@ export default {
   }
 
   #ok{
-    background-position: -202px 0px;
+    background-position: -208px 0px;
   }
   #ok:hover{
-    background: url('../assets/emot-active.png');
+    background: url('../assets/emot-active-klik.png');
     background-position: -208px 0px;
   }
   #ok.active,
@@ -136,10 +152,10 @@ export default {
   }
 
   #good{
-    background-position: -303px 0px;
+    background-position: -105px 0px;
   }
   #good:hover{
-    background: url('../assets/emot-active.png');
+    background: url('../assets/emot-active-klik.png');
     background-position: -105px 0px;
   }
   #good.active,
@@ -149,10 +165,10 @@ export default {
     /*border-style: inset;*/
   }
   #very-good{
-    background-position: -404px 0px;
+    background-position: 0.2px 0px;
   }
   #very-good:hover{
-    background: url('../assets/emot-active.png');
+    background: url('../assets/emot-active-klik.png');
     background-position: 0.2px 0px;
   }
   #very-good.active,
@@ -161,6 +177,36 @@ export default {
     background-position: 0.2px 0px;
     /*border-style: inset;*/
   }
+
+
+
+
+  section.penjelasan-emot {
+    display: flex;
+    width: 600px;
+    padding-top: 10px;
+
+    }
+
+    .very-bad {
+       padding-left: 26px;
+    }
+
+    .bad {
+       padding-left: 70px;
+    }
+
+    .ok {
+      padding-left: 93px;
+    }
+
+    .good {
+      padding-left: 88px;
+    }
+
+    .very-good {
+      padding-left: 65px;
+    }
 
 
 
