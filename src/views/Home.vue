@@ -6,14 +6,18 @@
   		</h3>
 
   		<div class="emoticons">
-  			<vote />
+  			<vote :voteProp="vote"/> <!--voteProp akan dikirim ke dalam vote componen, setelah mendapat hasil dari vote komponen maka method di dalam voteProp,
+  			 (vote) akan dijalankan (37) -->
   		</div>
   	</section>
 
   	<section class="finish">
-  		
-  		<h4>Terima kasih telah memberikan penilaian anda</h4>
 
+  		<transition name="fade">
+  		
+  			<h4 v-if="show">Terima kasih telah memberikan penilaian anda</h4> <!-- v-if="show" untuk menghilangkan tulisan terima kasih-->
+
+  		</transition>
   	</section>
   </div>
 </template>
@@ -24,7 +28,17 @@ import Vote from "@/components/Vote.vue";
 
 export default {
   name: "Home",
-  components: { Vote }
+  data: function(){
+  	return{
+  		show: false //data show dari line 17, false = hilang, true = ada
+  	}
+  },
+  components: { Vote },
+  methods: {
+  	vote(){
+  		this.show = true;
+  	}
+  }
 };
 </script>
 <style type="text/css">

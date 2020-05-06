@@ -25,7 +25,11 @@ import moment from "moment";
 
 export default {
   name: "Vote",
-  components: {},
+  props: {
+    voteProp : { //Home.vue line 9
+      type : Function //type voteProp = function
+    }
+  },
   data: function(){
     return {
       emoticons: ['very-bad','bad','ok','good','very-good'], //membuat array emoticons
@@ -54,6 +58,8 @@ export default {
       //console.log(jsonToString);
 
       localStorage.setItem(keyStorage, jsonToString); //menyimpan nilai voted ke dalam nilai kunci vote di dalam local storage (inpect -> application -> localstorage)
+
+      this.voteProp();
     }
    },
    computed:{
@@ -75,87 +81,86 @@ export default {
   }
 
   .btn-emoticon{
-    background: url('../assets/emot-active.png');
-    width: 88px;
+    background: url('../assets/emoticon.png');
+    width: 101px;
     height: 100px;
     border: none;
-    margin: 0px 15px;
+    margin: 0px 10px;
     cursor: pointer;
     outline: none;
     align-items: center;
   }
 
   
-  #very-bad{
-    background-position: -413.2px 0px;
+#very-bad{
+    background-position: 0px 0px;
   }
   #very-bad:hover{
-    background: url('../assets/emot-active-klik.png');
-    background-position: -413.2px 0px;
+    background: url('../assets/emot-active.png');
+    background-position: -400px 0px;
   }
   #very-bad.active,
   #very-bad:active{
     background: url('../assets/emot-active-klik.png');
-    background-position: -413.2px 0px;
-    border-style: inset;
+    background-position: -400px 0px;
+    /*border-style: inset;*/
     
   }
 
   #bad{
-    background-position: -311px 0px;
+    background-position: -101px 0px;
   }
   #bad:hover{
-    background: url('../assets/emot-active-klik.png');
+    background: url('../assets/emot-active.png');
     background-position: -311px 0px;
   }
   #bad.active,
   #bad:active{
     background: url('../assets/emot-active-klik.png');
     background-position: -311px 0px;
-    border-style: inset;
+    /*border-style: inset;*/
   }
 
   #ok{
-    background-position: -208px 0px;
+    background-position: -202px 0px;
   }
   #ok:hover{
-    background: url('../assets/emot-active-klik.png');
+    background: url('../assets/emot-active.png');
     background-position: -208px 0px;
   }
   #ok.active,
   #ok:active{
     background: url('../assets/emot-active-klik.png');
     background-position: -208px 0px;
-    border-style: inset;
+    /*border-style: inset;*/
   }
 
   #good{
-    background-position: -105px 0px;
+    background-position: -303px 0px;
   }
   #good:hover{
-    background: url('../assets/emot-active-klik.png');
+    background: url('../assets/emot-active.png');
     background-position: -105px 0px;
   }
   #good.active,
   #good:active{
     background: url('../assets/emot-active-klik.png');
     background-position: -105px 0px;
-    border-style: inset;
+    /*border-style: inset;*/
   }
   #very-good{
-    background-position: 0.2px 0px;
+    background-position: -404px 0px;
   }
   #very-good:hover{
-    background: url('../assets/emot-active-klik.png');
+    background: url('../assets/emot-active.png');
     background-position: 0.2px 0px;
   }
   #very-good.active,
   #very-good:active{
     background: url('../assets/emot-active-klik.png');
     background-position: 0.2px 0px;
-    border-style: inset;
+    /*border-style: inset;*/
   }
-
 
 
 
