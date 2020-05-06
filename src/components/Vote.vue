@@ -4,7 +4,7 @@
       <div class="buttons">
         <!-- v-for untuk melakukan looping di dalam vue, emoticon, index akan mendapatkan nilai dari arrary emoticons. key mendapatkan nilai dari index,
         id akan mendapatkan nilai perulangan dari emoticon || value agar semua emoticon memiliki valuenya masing2 || vote adalah nama method (47) || :class = jika nilai emoticon hasil looping memiliki nilai yang sama dengan emoticon yg sedang di klik, maka emoticon tsb
-        akan di tambahkan kelas active line 53-->
+        akan di tambahkan kelas active line 53 -->
         <button v-for="(emoticon, index) in emoticons" 
                 :key="index"
                 :id="emoticon"
@@ -82,6 +82,11 @@ export default {
     isDisable : function(){
       return this.emoticonClick.length === 0 ? false : true; //jika nilai string di dalam emoticionClick 0 maka nilainya false, jika >0 maka true
     }
+   },
+   mounted(){
+    this.$root.$on('emitProcessDone', () => {
+      this.emoticonClick ='';
+    });
    }
   };
 </script>
