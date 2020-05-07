@@ -40,7 +40,7 @@ export default {
   	},
   	resetVote(){
   		this.show = false;
-  		this.$root.$emit('emitProcessDone')
+  		this.$root.$emit('emitProcessDone') //membuat emit dengan nama emitProcessDonw Vote line 87
   	}
   }
 };

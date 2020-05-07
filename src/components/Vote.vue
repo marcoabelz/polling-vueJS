@@ -59,6 +59,11 @@ export default {
       //this.isDisable=true; //ketika isDisable bernilai true, maka button emot tidak bisa di klik lagi
       this.emoticonClick= voted; //emoticonClick akan diisi berdasarkan value icon yg di klik
       //console.log(voted);
+      this.store(voted); //melakukan penyimpanan data
+
+      this.voteProp();//memberikan indokator ke home components untuk menampilkan terima kasih
+    },
+    store(voted){
       var keyStorage = moment().format('YYYYMMDDhhmmss'); //digunakan sebagai key dinamis untuk menyimpan data dengan value yg berbeda (gantinya id)
       var created_at = moment().format('YYYY-MM-DD, hh:mm:ss');
       
@@ -74,8 +79,6 @@ export default {
       //console.log(jsonToString);
 
       localStorage.setItem(keyStorage, jsonToString); //menyimpan nilai voted ke dalam nilai kunci vote di dalam local storage (inpect -> application -> localstorage)
-
-      this.voteProp();
     }
    },
    computed:{
@@ -84,7 +87,7 @@ export default {
     }
    },
    mounted(){
-    this.$root.$on('emitProcessDone', () => {
+    this.$root.$on('emitProcessDone', () => { //script ini digunkaan untuk menangkap emitProcessDone dari Home.vue
       this.emoticonClick ='';
     });
    }
